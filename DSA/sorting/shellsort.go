@@ -5,20 +5,23 @@ import "fmt"
 func shell(A []int) {
 	n := len(A)
 	gap := n / 2
-	i := gap
-	for i < n {
-		temp := A[i]
-		j := i - gap
-		for j >= 0 && A[j] > temp {
-			A[j+gap] = A[j]
-			j = j - gap
+	for gap > 0 {
+		i := gap
+		for i < n {
+			temp := A[i]
+			j := i - gap
+			for j >= 0 && A[j] > temp {
+				A[j+gap] = A[j]
+				j = j - gap
+			}
+			A[j+gap] = temp
+			i = i + 1
+
 		}
-		A[j+gap] = temp
-		i = i + 1
+		gap = gap / 2
+		fmt.Println(A)
 
 	}
-	gap = gap / 2
-
 }
 
 func main() {
